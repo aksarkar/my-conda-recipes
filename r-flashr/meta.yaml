@@ -1,0 +1,90 @@
+{% set version = '0.6-3' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-flashr
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://www.github.com/stephenslab/flashr
+  git_tag: 276bca2
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: ebnm (>= 0.1-15), testthat, knitr, rmarkdown, REBayes, Rmosek
+requirements:
+  build:
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+    - r-ashr >=2.2_4
+    - r-ggplot2
+    - r-reshape2
+    - r-softimpute
+
+  run:
+    - r-base
+    - r-ashr >=2.2_4
+    - r-ggplot2
+    - r-reshape2
+    - r-softimpute
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('flashr')"           # [not win]
+    - "\"%R%\" -e \"library('flashr')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: http://github.com/stephenslab/flashr
+  license: BSD_3_clause + file LICENSE
+  summary: Methods for matrix factorization based on "Empirical Bayes Matrix Factorization" (W.
+    Wang & M. Stephens, 2018, <https://arxiv.org/abs/1802.06931>). The name "flashr"
+    comes from "Factors and Loadings by Adaptive SHrinkage in R".
+  license_family: BSD
+
+# The original CRAN metadata for this package was:
+
+# Package: flashr
+# Encoding: UTF-8
+# Type: Package
+# Version: 0.6-3
+# Date: 2018-09-28
+# Title: Empirical Bayes Matrix Factorization
+# Authors@R: c(person("Matthew","Stephens",role=c("aut","cre"), email="mstephens@uchicago.edu"), person("Wei","Wang",role="aut"), person("Jason","Willwerscheid",role="aut"), person("Peter","Carbonetto",role="ctb"))
+# Maintainer: Matthew Stephens <mstephens@uchicago.edu>
+# Description: Methods for matrix factorization based on "Empirical Bayes Matrix Factorization" (W. Wang & M. Stephens, 2018, <https://arxiv.org/abs/1802.06931>). The name "flashr" comes from "Factors and Loadings by Adaptive SHrinkage in R".
+# Depends: R (>= 3.3)
+# Imports: ashr (>= 2.2-4), ggplot2, graphics, grDevices, methods, reshape2, softImpute, stats, utils
+# Suggests: ebnm (>= 0.1-15), testthat, knitr, rmarkdown, REBayes, Rmosek
+# License: BSD_3_clause + file LICENSE
+# URL: http://github.com/stephenslab/flashr
+# BugReports: http://github.com/stephenslab/flashr/issues
+# VignetteBuilder: knitr
+# LazyData: true
+# RoxygenNote: 6.0.1.9000
+# Remotes: stephens999/ashr, stephenslab/ebnm
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
