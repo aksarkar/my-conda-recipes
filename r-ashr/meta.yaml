@@ -1,17 +1,16 @@
-{% set version = '2.2-32' %}
+{% set version = '2.2.32.dev1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-ashr
-  version: {{ version|replace("-", ".") }}
+  version: {{ version }}
 
 source:
-  url:
-    - {{ cran_mirror }}/src/contrib/ashr_{{ version }}.tar.gz
-    - {{ cran_mirror }}/src/contrib/Archive/ashr/ashr_{{ version }}.tar.gz
-  sha256: 640b5720cc802d35a8d62af38f2d922437426ab7035bc848d2c3dff00481734c
+
+  git_url: https://github.com/stephens999/ashr
+  git_tag: 646154b7616d1ec0801cb5de82fd68ad907130ad
 
 build:
   merge_build_host: True  # [win]
