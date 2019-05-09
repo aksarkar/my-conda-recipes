@@ -1,0 +1,100 @@
+{% set version = '1.5.3dev1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-zinbwave
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/drisso/zinbwave
+  git_tag: da8864ac6ab4c4b783e976cfa4a7ea555efec902
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: knitr, rmarkdown, testthat, matrixStats, magrittr, scRNAseq, ggplot2, biomaRt, BiocStyle, Rtsne, DESeq2, Seurat
+requirements:
+  build:
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+    - r-biocparallel
+    - r-matrix
+    - r-singlecellexperiment
+    - r-summarizedexperiment
+    - r-copula
+    - r-edger
+    - r-genefilter
+    - r-glmnet
+    - r-softimpute
+
+  run:
+    - r-base
+    - r-biocparallel
+    - r-matrix
+    - r-singlecellexperiment
+    - r-summarizedexperiment
+    - r-copula
+    - r-edger
+    - r-genefilter
+    - r-glmnet
+    - r-softimpute
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('zinbwave')"           # [not win]
+    - "\"%R%\" -e \"library('zinbwave')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/drisso/zinbwave
+  license: Artistic-2.0
+  summary: Implements a general and flexible zero-inflated negative binomial model that can be
+    used to provide a low-dimensional representations of single-cell RNA-seq data. The
+    model accounts for zero inflation (dropouts), over-dispersion, and the count nature
+    of the data. The model also accounts for the difference in library sizes and optionally
+    for batch effects and/or other covariates, avoiding the need for pre-normalize the
+    data.
+  license_family: OTHER
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/Artistic-2.0'
+
+# The original CRAN metadata for this package was:
+
+# Package: zinbwave
+# Type: Package
+# Title: Zero-Inflated Negative Binomial Model for RNA-Seq Data
+# Version: 1.5.3
+# Authors@R: c(person("Davide","Risso", role=c("aut","cre", "cph"), email="risso.davide@gmail.com" ), person("Svetlana","Gribkova", role="aut", email="svetlana.gribkova@mines-paristech.fr"), person("Fanny", "Perraudeau", role="aut", email="fperraudeau@berkeley.edu"), person("Jean-Philippe", "Vert", role="aut", email="jean-philippe.vert@mines-paristech.fr"))
+# Description: Implements a general and flexible zero-inflated negative binomial model that can be used to provide a low-dimensional representations of single-cell RNA-seq data. The model accounts for zero inflation (dropouts), over-dispersion, and the count nature of the data. The model also accounts for the difference in library sizes and optionally for batch effects and/or other covariates, avoiding the need for pre-normalize the data.
+# License: Artistic-2.0
+# Depends: R (>= 3.4), methods, SummarizedExperiment, SingleCellExperiment
+# Imports: copula, glmnet, BiocParallel, softImpute, stats, genefilter, edgeR, Matrix
+# Suggests: knitr, rmarkdown, testthat, matrixStats, magrittr, scRNAseq, ggplot2, biomaRt, BiocStyle, Rtsne, DESeq2, Seurat
+# VignetteBuilder: knitr
+# LazyData: TRUE
+# RoxygenNote: 6.1.1
+# biocViews: ImmunoOncology, DimensionReduction, GeneExpression, RNASeq, Software, Transcriptomics, Sequencing, SingleCell
+# BugReports: https://github.com/drisso/zinbwave/issues
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
