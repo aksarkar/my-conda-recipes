@@ -1,0 +1,79 @@
+{% set version = '1.2-3' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-nor1mix
+  version: {{ version|replace("-", ".") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/nor1mix_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/nor1mix/nor1mix_{{ version }}.tar.gz
+  sha256: 435e6519e832ef5229c51ccb2619640e6b50dfc7470f70f0c938d18a114273af
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: cluster
+requirements:
+  build:
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+
+  run:
+    - r-base
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('nor1mix')"           # [not win]
+    - "\"%R%\" -e \"library('nor1mix')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=nor1mix
+  license: GPL (>= 2)
+  summary: Onedimensional Normal Mixture Models Classes, for, e.g., density estimation or clustering
+    algorithms research and teaching; providing the widely used Marron-Wand densities.  Efficient
+    random number generation and graphics; now fitting to data by ML (Maximum Likelihood)
+    or EM estimation.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+
+# The original CRAN metadata for this package was:
+
+# Package: nor1mix
+# Title: Normal (1-d) Mixture Models (S3 Classes and Methods)
+# Version: 1.2-3
+# Date: 2017-08-29
+# Author: Martin MAchler
+# Maintainer: Martin Maechler <maechler@stat.math.ethz.ch>
+# Description: Onedimensional Normal Mixture Models Classes, for, e.g., density estimation or clustering algorithms research and teaching; providing the widely used Marron-Wand densities.  Efficient random number generation and graphics; now fitting to data by ML (Maximum Likelihood) or EM estimation.
+# Imports: stats, graphics
+# Suggests: cluster
+# License: GPL (>= 2)
+# Encoding: UTF-8
+# NeedsCompilation: no
+# Packaged: 2017-08-29 13:15:59 UTC; maechler
+# Repository: CRAN
+# Date/Publication: 2017-08-30 12:50:45 UTC
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
