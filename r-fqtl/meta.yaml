@@ -1,0 +1,85 @@
+{% set version = '1.4.2.dev1' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-fqtl
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/ypark/fqtl
+  git_tag: d30edf5691fc684ef63536eefc9083460e50ddb8
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 1
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+requirements:
+  build:
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}git
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+    - r-matrix
+    - r-rcpp >=0.12.6
+    - r-rcppeigen >=0.3.2.9.0
+    - r-rcppprogress >=0.2.1
+
+  run:
+    - r-base
+    - {{native}}gcc-libs         # [win]
+    - r-matrix
+    - r-rcpp >=0.12.6
+    - r-rcppeigen >=0.3.2.9.0
+    - r-rcppprogress >=0.2.1
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('fqtl')"           # [not win]
+    - "\"%R%\" -e \"library('fqtl')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/ypark/fqtl
+  license: MIT
+  summary: Factored QTL estimation
+  license_family: MIT
+
+# The original CRAN metadata for this package was:
+
+# Package: fqtl
+# Type: Package
+# Title: FQTL
+# Version: 1.4.2
+# Date: 2018-08-11
+# Author: Yongjin Park, Abhishek Sarkar, Kunal Bhutani, Manolis Kellis
+# Maintainer: Yongjin Park <ypp@csail.mit.edu>
+# Description: Factored QTL estimation
+# License: LICENSE
+# Imports: Rcpp (>= 0.12.6), RcppEigen (>= 0.3.2.9.0), RcppProgress (>= 0.2.1), Matrix, methods
+# LinkingTo: Rcpp, RcppEigen, RcppProgress
+# RoxygenNote: 6.1.0
+# SystemRequirements: C++14
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
