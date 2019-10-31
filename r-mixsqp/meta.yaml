@@ -1,17 +1,17 @@
-{% set version = '0.1-97' %}
+{% set version = '0.2-2' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-mixsqp
-  version: {{ version|replace("-", "_") }}
+  version: {{ version|replace("-", ".") }}
 
 source:
   url:
     - {{ cran_mirror }}/src/contrib/mixsqp_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/mixsqp/mixsqp_{{ version }}.tar.gz
-  sha256: f30463d5558be3d7b5b97739c0e40e07c77711001a98f15828e1a74bde636d34
+  sha256: 44a5ffb23834ea91ab7f956a8a8b8759e5aab569402d053b6e0700481b20f589
 
 build:
   merge_build_host: True  # [win]
