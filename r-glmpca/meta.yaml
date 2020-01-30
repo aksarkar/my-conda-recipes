@@ -1,4 +1,4 @@
-{% set version = '0.0.0.9000' %}
+{% set version = '0.1.0.dev1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -9,8 +9,8 @@ package:
 
 source:
 
-  git_url: https://github.com/aksarkar/glmpca
-  git_tag: 5a0f2ee19fdfa3794a56933d9d05931ac5cb09ac
+  git_url: https://github.com/willtownes/glmpca
+  git_tag: fd415655b7d5915576f77a447f71a9d16a1ffaf8
 
 build:
   merge_build_host: True  # [win]
@@ -47,24 +47,6 @@ test:
     # Put any additional test requirements here.
 
 about:
-  home: https://github.com/aksarkar/glmpca
-  license: What license is it under?
-  summary: What the package does (one paragraph).
-  license_family: OTHER
-
-# The original CRAN metadata for this package was:
-
-# Package: glmpca
-# Title: What the Package Does (one line, title case)
-# Version: 0.0.0.9000
-# Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-# Description: What the package does (one paragraph).
-# Depends: R (>= 3.5.1)
-# License: What license is it under?
-# Encoding: UTF-8
-# LazyData: true
-# RoxygenNote: 6.1.0
-
-# See
-# http://docs.continuum.io/conda/build.html for
-# more information about meta.yaml
+  home: https://github.com/willtownes/glmpca
+  license: Artistic 2.0
+  summary: Implements a generalized version of principal components analysis (GLM-PCA) for dimension reduction of non-normally distributed data such as counts or binary matrices. Townes FW, Hicks SC, Aryee MJ, Irizarry RA (2019) <doi:10.1101/574574>. Townes FW (2019) <arXiv:1907.02647>.
