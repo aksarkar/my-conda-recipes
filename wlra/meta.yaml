@@ -1,0 +1,27 @@
+package:
+  name: scmodes
+  version: '0.2'
+
+build:
+  number: 1
+
+source:
+  git_url: /project2/mstephens/aksarkar/projects/wlra
+  git_tag: v0.2
+
+requirements:
+  build:
+    - numpy >=1.18
+    - scikit-learn
+    - scipy
+
+  run:
+    - numpy >=1.18
+    - scikit-learn
+
+about:
+  home: https://www.github.com/aksarkar/wlra
+  license: MIT
+  summary:
+    'Implementation of EM algorithm for Weighted Low Rank Approximation (Srebro
+    et al. 2003)'
