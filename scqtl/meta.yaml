@@ -1,0 +1,39 @@
+package:
+  name: scqtl
+  version: '0.1.dev1'
+
+build:
+  number: 0
+
+source:
+  git_url: /project2/mstephens/aksarkar/projects/scqtl
+  git_tag: master
+
+requirements:
+  build:
+    - numpy >=1.18
+    - python >=3.6.9
+    - scipy
+    - tensorflow <=1.15
+
+  run:
+    - numpy >=1.18
+    - python >=3.6.9
+    - scipy
+    - tensorflow <=1.15
+
+about:
+  home: https://www.github.com/aksarkar/scqtl
+  license: MIT
+  summary:
+    'This package implements maximum likelihood estimation of the zero-inflated
+    negative binomial model described in:
+
+    Abhishek K Sarkar, Po-Yuan Tung, John D. Blischak, Jonathan E. Burnett,
+    Yang I. Li, Matthew Stephens, Yoav Gilad. "Discovery and characterization
+    of variance QTLs in human induced pluripotent stem cells". PLoS
+    Genetics (2019).  https://doi.org/10.1371/journal.pgen.1008045
+
+    The key idea is that we learn latent point-Gamma distributions for
+    expression per individual/condition per gene, and then perform all
+    downstream analysis on (the parameters of) those distributions.'
