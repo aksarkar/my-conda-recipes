@@ -1,0 +1,39 @@
+package:
+  name: scmodes
+  version: '0.5.dev1'
+
+build:
+  number: 1
+
+source:
+  git_url: /project2/mstephens/aksarkar/projects/scmodes
+  git_tag: master
+
+requirements:
+  build:
+    - numpy >=1.18
+    - pandas
+    - python >=3.6.9
+    - rpy2
+    - scikit-learn
+    - scipy
+    - setuptools
+    - pytorch
+
+  run:
+    - numpy >=1.18
+    - pandas
+    - python >=3.6.9
+    - rpy2
+    - scikit-learn
+    - scipy
+    - pytorch
+
+about:
+  home: https://www.github.com/aksarkar/scmodes
+  license: MIT
+  summary:
+    'This package collects implementations of single cell expression models,
+    and code to evaluate their performance as described in Sarkar, AK and
+    Stephens, M. "A general statistical framework clarifies confusion in
+    analysis of scRNA-seq data".'
