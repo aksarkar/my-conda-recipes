@@ -1,0 +1,43 @@
+{% set package = "ucsc-liftover" %}
+{% set program = "liftOver" %}
+{% set version = "390" %}
+
+package:
+  name: "{{ package }}"
+  version: "{{ version }}"
+
+source:
+  url: "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.v{{ version }}.src.tgz"
+  sha256: "348212a0c82f079ac7b19ddcb699f387b6b5e6ac4495e76bee25866d940fa27b"
+  patches:
+    - "include.patch"
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+  host:
+    - libpng
+    - libuuid
+    - mysql-connector-c
+    - openssl
+    - zlib
+
+  run:
+    - libpng
+    - libuuid
+    - mysql-connector-c
+    - openssl
+    - zlib
+
+test:
+  commands:
+    # just check for existence, because the individual packages have no unified behavior
+    - which {{ program }}
+
+about:
+  home: "http://hgdownload.cse.ucsc.edu/admin/exe/"
+  license: "varies; see http://genome.ucsc.edu/license"
+  summary: "Move annotations from one assembly to another"
