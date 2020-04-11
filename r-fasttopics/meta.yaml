@@ -1,6 +1,6 @@
 package:
   name: r-fasttopics
-  version: '0.2.dev1'
+  version: '0.3.dev1'
 
 build:
   number: 0
