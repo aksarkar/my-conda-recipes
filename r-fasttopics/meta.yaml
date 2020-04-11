@@ -1,0 +1,48 @@
+package:
+  name: r-fasttopics
+  version: '0.2.dev1'
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+source:
+  git_url: git@github.com:stephenslab/fastTopics.git
+  git_tag: 3c42c5e6fcae418819181b99c75db8566528b250
+
+requirements:
+  build:
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+
+  host:
+    - r-base
+    - r-cowplot
+    - r-ggplot2
+    - r-matrix
+    - r-rcpp (>= 1.0.1)
+    - r-rcpparmadillo
+    - r-rcppparallel (>= 4.4.1)
+
+  run:
+    - r-base
+    - r-cowplot
+    - r-ggplot2
+    - r-matrix
+    - r-rcpp (>= 1.0.1)
+    - r-rcpparmadillo
+    - r-rcppparallel (>= 4.4.1)
+    
+test:
+  commands:
+    - $R -e "library('fastTopics')"           # [not win]
+    - "\"%R%\" -e \"library('fastTopics')\""  # [win]
+
+about:
+  home: http://github.com/stephenslab/fastTopics
+  license: MIT
+  summary: 'Fast algorithms for fitting topic models and non-negative factorizations to count data.'
+  license_family: MIT
+  license_file: LICENSE
