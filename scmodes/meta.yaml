@@ -1,13 +1,13 @@
 package:
   name: scmodes
-  version: '0.5.dev1'
+  version: '0.6'
 
 build:
-  number: 1
+  number: 0
 
 source:
   git_url: /project2/mstephens/aksarkar/projects/scmodes
-  git_tag: master
+  git_tag: v0.6
 
 requirements:
   build:
@@ -36,4 +36,4 @@ about:
     'This package collects implementations of single cell expression models,
     and code to evaluate their performance as described in Sarkar, AK and
     Stephens, M. "A general statistical framework clarifies confusion in
-    analysis of scRNA-seq data".'
+    analysis of scRNA-seq data". (working title)'
