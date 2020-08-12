@@ -12,7 +12,7 @@ source:
 requirements:
   build:
     - numpy >=1.18
-    - python >=3.6.9
+    - python {{PY_VER}}*,>=3.6.9
     - scipy
     - tensorflow <=1.15
 
