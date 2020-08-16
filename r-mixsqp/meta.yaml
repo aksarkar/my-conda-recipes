@@ -1,4 +1,4 @@
-{% set version = '0.3-43' %}
+{% set version = '0.3.45.dev1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -8,9 +8,8 @@ package:
   version: {{ version|replace("-", ".") }}
 
 source:
-  url:
-    - {{ cran_mirror }}/src/contrib/mixsqp_{{ version }}.tar.gz
-    - {{ cran_mirror }}/src/contrib/Archive/mixsqp/mixsqp_{{ version }}.tar.gz
+  git_url: https://github.com/stephenslab/mixsqp
+  git_tag: master
 
 build:
   merge_build_host: True  # [win]
