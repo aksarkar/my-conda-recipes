@@ -1,4 +1,4 @@
-{% set version = '2.2.39.dev1' %}
+{% set version = '2.2.51.dev1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -10,7 +10,7 @@ package:
 source:
 
   git_url: https://github.com/stephens999/ashr
-  git_tag: 8f07213dbea45f6ba586cb12dac7c6fe582f709e
+  git_tag: master
 
 build:
   merge_build_host: True  # [win]
@@ -42,6 +42,7 @@ requirements:
     - r-assertthat
     - r-doparallel
     - r-etrunct
+    - r-invgamma
     - r-foreach
     - r-mixsqp
     - r-pscl
@@ -56,6 +57,7 @@ requirements:
     - r-assertthat
     - r-doparallel
     - r-etrunct
+    - r-invgamma
     - r-foreach
     - r-mixsqp
     - r-pscl
