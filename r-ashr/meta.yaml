@@ -45,7 +45,6 @@ requirements:
     - r-invgamma
     - r-foreach
     - r-mixsqp
-    - r-pscl
     - r-truncnorm
 
   run:
@@ -60,7 +59,6 @@ requirements:
     - r-invgamma
     - r-foreach
     - r-mixsqp
-    - r-pscl
     - r-truncnorm
 
 test:
