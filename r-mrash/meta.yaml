@@ -10,7 +10,7 @@ source:
   git_tag: master
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -30,7 +30,7 @@ requirements:
     - r-base
     - r-matrix
     - r-rcpp >=1.0.1
-    - r-rcpparmadillo
+    - r-rcpparmadillo >=0.9.700.2
 
   run:
     - r-base
