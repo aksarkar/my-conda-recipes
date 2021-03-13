@@ -1,0 +1,105 @@
+{% set version = '1.5-5' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-rrcov
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/rrcov_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rrcov/rrcov_{{ version }}.tar.gz
+  sha256: 1f7f07558e347e7d1f1adff68631764670bc672777a7d990901c4fa94cc0e629
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  # no skip
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: grid, MASS
+requirements:
+  build:
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
+
+  host:
+    - r-base
+    - r-lattice
+    - r-mvtnorm
+    - r-pcapp
+    - r-robustbase >=0.92.1
+
+  run:
+    - r-base
+    - {{native}}gcc-libs         # [win]
+    - r-lattice
+    - r-mvtnorm
+    - r-pcapp
+    - r-robustbase >=0.92.1
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('rrcov')"           # [not win]
+    - "\"%R%\" -e \"library('rrcov')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://CRAN.R-project.org/package=rrcov
+  license: GPL-2
+  summary: 'Robust Location and Scatter Estimation and Robust Multivariate Analysis with High
+    Breakdown Point: principal component analysis (Filzmoser and Todorov (2013), <doi:10.1016/j.ins.2012.10.017>),
+    linear and quadratic discriminant analysis (Todorov and Pires (2007)), multivariate
+    tests (Todorov and Filzmoser (2010) <doi:10.1016/j.csda.2009.08.015>), outlier detection
+    (Todorov et al. (2010) <doi:10.1007/s11634-010-0075-2>). See also Todorov and Filzmoser
+    (2009) <ISBN-13:978-3838108148>, Todorov and Filzmoser (2010) <doi:10.18637/jss.v032.i03>
+    and Boudt et al. (2019) <doi:10.1007/s11222-019-09869-x>.'
+
+  license_family: GPL2
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+
+# The original CRAN metadata for this package was:
+
+# Package: rrcov
+# Version: 1.5-5
+# Date: 2020-07-31
+# VersionNote: Released 1.5-2 on 2020-01-16 on CRAN
+# Title: Scalable Robust Estimators with High Breakdown Point
+# Authors@R: c(person("Valentin", "Todorov", role = c("aut", "cre"), email = "valentin.todorov@chello.at", comment=c(ORCID = "0000-0003-4215-0245")))
+# Description: Robust Location and Scatter Estimation and Robust Multivariate Analysis with High Breakdown Point: principal component analysis (Filzmoser and Todorov (2013), <doi:10.1016/j.ins.2012.10.017>), linear and quadratic discriminant analysis (Todorov and Pires (2007)), multivariate tests (Todorov and Filzmoser (2010) <doi:10.1016/j.csda.2009.08.015>), outlier detection (Todorov et al. (2010) <doi:10.1007/s11634-010-0075-2>). See also Todorov and Filzmoser (2009) <ISBN-13:978-3838108148>, Todorov and Filzmoser (2010) <doi:10.18637/jss.v032.i03> and Boudt et al. (2019) <doi:10.1007/s11222-019-09869-x>.
+# Maintainer: Valentin Todorov <valentin.todorov@chello.at>
+# Depends: R (>= 2.10), robustbase (>= 0.92.1), methods
+# Imports: stats, stats4, mvtnorm, lattice, pcaPP
+# Suggests: grid, MASS
+# LazyLoad: yes
+# License: GPL (>= 2)
+# Repository: CRAN
+# Packaged: 2020-07-31 22:53:37 UTC; Share
+# NeedsCompilation: yes
+# Author: Valentin Todorov [aut, cre] (<https://orcid.org/0000-0003-4215-0245>)
+# Date/Publication: 2020-08-03 15:30:02 UTC
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml
