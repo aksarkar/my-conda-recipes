@@ -1,6 +1,6 @@
 package:
   name: r-fasttopics
-  version: '0.3.dev1'
+  version: '0.5.25.dev1'
 
 build:
   number: 0
@@ -10,7 +10,7 @@ build:
 
 source:
   git_url: git@github.com:stephenslab/fastTopics.git
-  git_tag: 3c42c5e6fcae418819181b99c75db8566528b250
+  git_tag: 65e3ad8
 
 requirements:
   build:
@@ -18,22 +18,46 @@ requirements:
     - {{ compiler('cxx') }}      # [not win]
 
   host:
+    - r-ashr
     - r-base
     - r-cowplot
+    - r-dplyr
     - r-ggplot2
+    - r-ggrepel
+    - r-htmlwidgets
+    - r-irlba
     - r-matrix
+    - r-mixsqp
+    - r-mcmcpack
+    - r-plotly
+    - r-progress
+    - r-quadprog
     - r-rcpp (>= 1.0.1)
     - r-rcpparmadillo
     - r-rcppparallel (>= 4.4.1)
+    - r-rcppprogress
+    - r-rtsne
 
   run:
+    - r-ashr
     - r-base
     - r-cowplot
+    - r-dplyr
     - r-ggplot2
+    - r-ggrepel
+    - r-htmlwidgets
+    - r-irlba
     - r-matrix
+    - r-mixsqp
+    - r-mcmcpack
+    - r-plotly
+    - r-progress
+    - r-quadprog
     - r-rcpp (>= 1.0.1)
     - r-rcpparmadillo
     - r-rcppparallel (>= 4.4.1)
+    - r-rcppprogress
+    - r-rtsne
     
 test:
   commands:
@@ -43,6 +67,16 @@ test:
 about:
   home: http://github.com/stephenslab/fastTopics
   license: MIT
-  summary: 'Fast algorithms for fitting topic models and non-negative factorizations to count data.'
+  summary: 'Fast algorithms for fitting topic models and non-negative
+  factorizations to count data.'
   license_family: MIT
   license_file: LICENSE
+  description: 'Implements fast, scalable optimization algorithms for fitting
+    topic models ("grade of membership" models) and non-negative matrix
+    factorizations to count data. The methods exploit the special relationship
+    between the multinomial topic model (also, "probabilistic latent semantic
+    indexing") and Poisson non-negative matrix factorization. The package
+    provides tools to compare, annotate and visualize model fits, including
+    functions to efficiently create "structure plots" and identify key features
+    in topics. The fastTopics package is a successor to the CountClust
+    package.'
