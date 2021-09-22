@@ -13,18 +13,19 @@ requirements:
   build:
     - numpy >=1.18
     - pandas
-    - python >=3.6.9
+    - python {{PY_VER}}*,>=3.6.9
     - rpy2
     - scikit-learn
     - scipy
     - setuptools
     - pytorch
     - future
+    - intel-openmp=2019.4
 
   run:
     - numpy >=1.18
     - pandas
-    - python >=3.6.9
+    - python {{PY_VER}}*,>=3.6.9
     - rpy2
     - scikit-learn
     - scipy
