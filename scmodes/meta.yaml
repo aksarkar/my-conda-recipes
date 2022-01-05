@@ -6,7 +6,7 @@ build:
   number: 0
 
 source:
-  git_url: /project2/mstephens/aksarkar/projects/scmodes
+  git_url: https://www.github.com/aksarkar/scmodes.git
   git_tag: v0.9
 
 requirements:
