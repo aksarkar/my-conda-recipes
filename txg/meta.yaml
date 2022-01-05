@@ -1,0 +1,22 @@
+{% set version = "1.2.0" %}
+
+package:
+  name: txg
+  version: {{ version }}
+
+source:
+  url: https://cf.10xgenomics.com/cloud-cli/v1.2.0/txg-linux-v{{ version }}.tar.gz
+
+build:
+  number: 2
+
+test:
+  commands:
+    - txg --help
+
+about:
+  home: https://support.10xgenomics.com/cloud-analysis/txg-documentation
+  summary: "The 10x Genomics Cloud CLI is a command line interface (CLI) that
+    allows you to upload FASTQ files to projects in your 10x Genomics account,
+    create projects from the command line, and manage other tasks related to
+    your 10x Genomics account."
