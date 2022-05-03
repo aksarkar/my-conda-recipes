@@ -1,13 +1,13 @@
 package:
   name: mpebpm
-  version: '0.2.dev1'
+  version: '0.2.dev2'
 
 build:
   number: 0
 
 source:
-  git_url: /project2/mstephens/aksarkar/projects/mpebpm
-  git_tag: c46651e
+  git_url: https://github.com/aksarkar/mpebpm
+  git_tag: 6b7df3f6ab5b56b7090ca90c080f0cd7a187b065
 
 requirements:
   build:
