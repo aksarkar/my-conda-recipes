@@ -1,6 +1,6 @@
 package:
   name: r-fasttopics
-  version: '0.5.25.dev1'
+  version: '0.6.117.dev1'
 
 build:
   number: 0
@@ -10,7 +10,7 @@ build:
 
 source:
   git_url: git@github.com:stephenslab/fastTopics.git
-  git_tag: 65e3ad8
+  git_tag: c8b6e764bd363385dd9ef70433dd939b4a662878
 
 requirements:
   build:
@@ -27,8 +27,9 @@ requirements:
     - r-htmlwidgets
     - r-irlba
     - r-matrix
-    - r-mixsqp
     - r-mcmcpack
+    - r-mixsqp
+    - r-pbapply
     - r-plotly
     - r-progress
     - r-quadprog
@@ -37,6 +38,7 @@ requirements:
     - r-rcppparallel (>= 4.4.1)
     - r-rcppprogress
     - r-rtsne
+    - r-uwot
 
   run:
     - r-ashr
@@ -48,8 +50,9 @@ requirements:
     - r-htmlwidgets
     - r-irlba
     - r-matrix
-    - r-mixsqp
     - r-mcmcpack
+    - r-mixsqp
+    - r-pbapply
     - r-plotly
     - r-progress
     - r-quadprog
@@ -58,6 +61,7 @@ requirements:
     - r-rcppparallel (>= 4.4.1)
     - r-rcppprogress
     - r-rtsne
+    - r-uwot
     
 test:
   commands:
