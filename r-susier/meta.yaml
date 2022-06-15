@@ -3,11 +3,11 @@
 
 package:
   name: r-susier
-  version: '0.11.43.dev1'
+  version: '0.12.10.dev1'
 
 source:
   git_url: https://github.com/stephenslab/susieR
-  git_tag: 58073151c3262c06e543f6eae8d181cd4a3639ac
+  git_tag: 4a63d85
 
 build:
   number: 0
@@ -24,7 +24,6 @@ requirements:
   host:
     - r-base
     - r-matrix
-    - r-expm
     - r-matrixstats
     - r-mixsqp
     - r-reshape
@@ -33,7 +32,6 @@ requirements:
   run:
     - r-base
     - r-matrix
-    - r-expm
     - r-matrixstats
     - r-mixsqp
     - r-reshape
