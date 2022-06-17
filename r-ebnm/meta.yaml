@@ -1,20 +1,17 @@
-{% set version = '0.1-16' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-ebnm
-  version: {{ version|replace("-", "_") }}
+  version: '1.0.11.dev1'
 
 source:
 
   git_url: https://github.com/stephenslab/ebnm
-  git_tag: 5cf8b78fdeb9a48b1899b80be00af7fc9d8c62f0
+  git_tag: 127a18f07b81aed82dd0ff613e872ee38f4fa3b2
 
 build:
-  merge_build_host: True  # [win]
-  # If this is a new build for the same version, increment the build number.
+  merge_build_host: True
   number: 0
 
   # This is required to make R link correctly on Linux.
@@ -30,12 +27,26 @@ requirements:
     - {{posix}}zip               # [win]
 
   host:
-    - r-base
-    - r-ashr >=2.2_2
+    - r-ashr
+    - r-base >=3.3.0
+    - r-deconvolver
+    - r-dplyr
+    - r-ggplot2     
+    - r-horseshoe
+    - r-magrittr
+    - r-truncnorm
+    - r-trust
 
   run:
-    - r-base
-    - r-ashr >=2.2_2
+    - r-ashr
+    - r-base >=3.3.0
+    - r-deconvolver
+    - r-dplyr
+    - r-ggplot2     
+    - r-horseshoe
+    - r-magrittr
+    - r-truncnorm
+    - r-trust
 
 test:
   commands:

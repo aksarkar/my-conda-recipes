@@ -1,0 +1,93 @@
+{% set version = '0.2.32' %}
+
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
+
+package:
+  name: r-flashier
+  version: {{ version|replace("-", "_") }}
+
+source:
+
+  git_url: https://github.com/willwerscheid/flashier
+  git_tag: 76e863a0103aa9bb7d612bce305cc03a39b70295
+
+build:
+  merge_build_host: True  # [win]
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+  # no skip
+
+  # This is required to make R link correctly on Linux.
+  rpaths:
+    - lib/R/lib/
+    - lib/
+
+# Suggests: testthat, knitr, rmarkdown, NNLM
+requirements:
+  build:
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}git
+    - {{ posix }}zip               # [win]
+
+  host:
+    - r-base
+    - r-matrix
+    - r-ebnm >=0.1_21
+    - r-irlba
+    - r-magrittr
+    - r-softimpute
+
+  run:
+    - r-base
+    - r-matrix
+    - r-ebnm >=0.1_21
+    - r-irlba
+    - r-magrittr
+    - r-softimpute
+
+test:
+  commands:
+    # You can put additional test commands to be run here.
+    - $R -e "library('flashier')"           # [not win]
+    - "\"%R%\" -e \"library('flashier')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
+
+about:
+  home: https://github.com/willwerscheid/flashier
+  license: BSD_3_clause
+  summary: Methods for matrix factorization based on "Empirical Bayes Matrix Factorization" (W.
+    Wang & M. Stephens, 2021).
+  license_family: BSD
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/BSD_3_clause'
+    - LICENSE
+
+# The original CRAN metadata for this package was:
+
+# Package: flashier
+# Type: Package
+# Date: 2021-04-01
+# Title: Empirical Bayes Matrix Factorization
+# Version: 0.2.32
+# Author: Jason Willwerscheid
+# Maintainer: Jason Willwerscheid <willwerscheid@github.com>
+# Description: Methods for matrix factorization based on "Empirical Bayes Matrix Factorization" (W. Wang & M. Stephens, 2021).
+# Depends: R (>= 3.4), magrittr
+# Remotes: stephenslab/ebnm
+# Imports: Matrix, ebnm (>= 0.1-21), parallel, softImpute, irlba
+# Suggests: testthat, knitr, rmarkdown, NNLM
+# License: BSD_3_clause + file LICENSE
+# Encoding: UTF-8
+# LazyData: true
+# RoxygenNote: 7.1.2
+# VignetteBuilder: knitr
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml
