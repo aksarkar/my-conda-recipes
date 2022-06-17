@@ -3,11 +3,11 @@
 
 package:
   name: r-susier
-  version: '0.12.10.dev1'
+  version: '0.12.10.dev2'
 
 source:
   git_url: https://github.com/stephenslab/susieR
-  git_tag: 4a63d85
+  git_tag: fa422e1c504c8252857d6e9c625ffad512cbb9d0
 
 build:
   number: 0
