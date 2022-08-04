@@ -1,0 +1,43 @@
+{% set name = "pybgen" %}
+{% set version = "0.7.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pybgen-{{ version }}.tar.gz
+  sha256: ff0708dc3ab88255a21a9b99751ea7a9cdf98d437600109cd1df862661de70d8
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - numpy >=1.12.0
+    - python
+    - setuptools >=27.0
+    - six >=1.10.0
+
+test:
+  imports:
+    - pybgen
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/lemieuxl/pybgen
+  summary: Python module to read BGEN files.
+  license: MIT
+  license_file: LICENSE.txt
+
+extra:
+  recipe-maintainers:
+    - asarkar
