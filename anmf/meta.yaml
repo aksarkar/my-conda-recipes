@@ -1,0 +1,43 @@
+package:
+  name: anmf
+  version: '0.1.dev1'
+
+build:
+  number: 1
+
+source:
+  git_url: git@gitlab.fl60inc.internal:asarkar/anmf.git
+  git_tag: a05fb992cb6dfc54850a8362042e1c430c8d024c
+
+requirements:
+  build:
+    - numpy >=1.18,<1.23
+    - python {{PY_VER}}*,>=3.6.9
+    - pytorch
+    - quadprog
+    - scipy
+    - scikit-learn
+
+  test:
+    requires:
+      - pytest
+
+  run:
+    - numpy >=1.18,<1.23
+    - python {{PY_VER}}*,>=3.6.9
+    - pytorch
+    - quadprog
+    - scipy
+    - scikit-learn
+
+about:
+  home: https://gitlab.internal.vesaliustx.com/asarkar/anmf
+  license: Proprietary
+  summary:
+    'This package provides an implementation of NMF with performance comparable to
+randomized PCA on sparse data, e.g. arising from scRNA-seq of $10^6$ cells at
+$10^4$ genes.
+  
+The key advances are: (1) the use of amortized inference, which allows the
+model to be fit on a GPU using minibatch SGD; (2) support for sparse
+matrices, which allows the entire data matrix to be stored on GPU memory.'
