@@ -1,14 +1,14 @@
-{% set version = "1.2.0" %}
+{% set version = "1.3.0" %}
 
 package:
   name: txg
   version: {{ version }}
 
 source:
-  url: https://cf.10xgenomics.com/cloud-cli/v1.2.0/txg-linux-v{{ version }}.tar.gz
+  url: "https://cf.10xgenomics.com/cloud-cli/v{{ version }}/txg-linux-v{{ version }}.tar.gz"
 
 build:
-  number: 2
+  number: 0
 
 test:
   commands:
