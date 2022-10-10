@@ -1,0 +1,29 @@
+package:
+  name: r-jlimr
+  version: 2.5.18.dev1
+
+source:
+  git_url: https://github.com/cotsapaslab/jlim
+  git_tag: 9dc2a978c92b60de68d42af2e2a2c9128a517809
+
+build:
+  number: 0
+  script: R CMD INSTALL jlimR
+
+requirements:
+  build:
+    - r-base >=3.6.0
+    - r-getopt
+
+  run:
+    - r-base >=3.6.0
+    - r-getopt
+
+test:
+  commands:
+    - $R -e "library('jlimR')"
+
+about:
+  license: GPL
+  summary: "Cross-trait test of shared causal effect described in Chun et al.
+    Nat Genet. 2017 Apr;49(4):600-605. doi: 10.1038/ng.3795."
