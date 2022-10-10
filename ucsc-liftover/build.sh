@@ -2,7 +2,7 @@
 mkdir -p "$PREFIX/bin"
 export MACHTYPE=x86_64
 export BINDIR=$(pwd)/bin
-export MAKE="make -s"
+export MAKE="make -sj$(grep -c processor /proc/cpuinfo)"
 mkdir -p "$BINDIR"
 $MAKE -C kent/src/ topLibs hgLib
 $MAKE -C kent/src/hg/liftOver

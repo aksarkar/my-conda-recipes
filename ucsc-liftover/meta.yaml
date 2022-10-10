@@ -1,14 +1,13 @@
 {% set package = "ucsc-liftover" %}
 {% set program = "liftOver" %}
-{% set version = "390" %}
+{% set version = "437" %}
 
 package:
   name: "{{ package }}"
   version: "{{ version }}"
 
 source:
-  url: "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.v{{ version }}.src.tgz"
-  sha256: "348212a0c82f079ac7b19ddcb699f387b6b5e6ac4495e76bee25866d940fa27b"
+  url: "http://hgdownload.cse.ucsc.edu/admin/exe/userApps.archive/userApps.v{{ version }}.src.tgz"
   patches:
     - "include.patch"
 
@@ -22,14 +21,14 @@ requirements:
     - libpng
     - libuuid
     - mysql-connector-c
-    - openssl
+    - libopenssl-static
     - zlib
 
   run:
     - libpng
     - libuuid
     - mysql-connector-c
-    - openssl
+    - libopenssl-static
     - zlib
 
 test:
