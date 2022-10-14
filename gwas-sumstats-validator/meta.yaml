@@ -1,0 +1,31 @@
+package:
+  name: gwas-sumstats-validator
+  version: '0.4.8.dev1'
+
+source:
+  git_url: https://github.com/EBISPOT/gwas-sumstats-validator
+  git_tag: d0e0c58a5d9ae0d8a808a0f868396fff3886b88f
+
+requirements:
+  build:
+    - tqdm >=4.48.2
+    - pandas_schema >=0.3.4
+
+  run:
+    - tqdm >=4.48.2
+    - pandas_schema >=0.3.4
+
+build:
+  number: 1
+  script: python setup.py install
+
+test:
+  commands:
+    - python -c "import validate.validator"
+
+about:
+  home: https://github.com/EBISPOT/gwas-sumstats-validator
+  license: Apache 2.0
+  summary: 'A file validator for validating GWAS summary statistics TSV files prior to and post harmonisation using pandas_schema. The purpose is to validate files before their conversion to HDF5.'
+  author: 'EBI SPOT'
+  package_maintainer: 'Abhishek Sarkar <asarkar@vesaliustx.com'
